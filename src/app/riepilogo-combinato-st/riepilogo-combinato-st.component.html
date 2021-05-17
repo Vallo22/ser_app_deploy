@@ -1,0 +1,324 @@
+<div class="container">
+
+    <!-- PROGRESS BAR -->
+    <div class="progress" style="margin-top: 30px" *ngIf="visualizzaRighe == 1">
+        <div class="progress-bar-1" role="progressbar" style="width: 33.3%" aria-valuenow="33.3" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar-2" role="progressbar" style="width: 33.3%" aria-valuenow="33.3" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar-3" role="progressbar" style="width: 33.4%" aria-valuenow="33.4" aria-valuemin="0" aria-valuemax="100">STEP 3</div>
+      </div>
+
+    <!-- PROGRESS BAR -->
+  <div class="progress" style="margin-top: 30px" *ngIf="visualizzaRighe != 1">
+    <div class="progress-bar-1" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="progress-bar-2" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="progress-bar-3" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="progress-bar-4" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">STEP 4</div>
+  </div>
+
+    <div class="titolo" style="text-align: center;margin-top: 30px; font-size: 30px;">
+        <p><strong>Integrazione con le soluzioni energetiche</strong></p>
+    </div>
+
+    <div class="card my-5">
+        <div class="card-body">
+            <p style="font-size: 17px;"><strong>• Interventi strutturali selezionati</strong></p>
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let interventoStrutturale of interventi">
+                    <td style="float: left;">{{interventoStrutturale.intervento.codice}} - {{interventoStrutturale.intervento.descrizione}}<br>
+
+                        <select [(ngModel)]="interventoStrutturale.tipo_sup" *ngIf="interventoStrutturale.intervento.codice == 'B6'">
+                            <option disabled value="1">Intradosso a vista</option>
+                            <option value="2">Intradosso con controsoffitto</option>        
+                        </select>
+
+                        <select [(ngModel)]="interventoStrutturale.tipo_sup" *ngIf="interventoStrutturale.intervento.codice == 'G4'">
+                            <option disabled value="3">Intradosso a vista</option>
+                            <option value="4">Intradosso intonacato</option>
+                        </select>
+
+                        <select [(ngModel)]="interventoStrutturale.tipo_sup" *ngIf="interventoStrutturale.intervento.codice == 'G6'">
+                            <option value="32">G6 a</option>
+                            <option disabled value="33">G6 b - Intradosso a vista</option>
+                            <option value="34">G6 b - Intradosso intonacato</option>
+                        </select>
+
+                        <select [(ngModel)]="interventoStrutturale.tipo_sup" *ngIf="interventoStrutturale.intervento.codice == 'G7'">
+                            <option disabled value="5">Intradosso a vista</option>
+                            <option value="6">Intradosso intonacato</option>
+                        </select>
+
+                        <select [(ngModel)]="interventoStrutturale.tipo_sup" *ngIf="interventoStrutturale.intervento.codice == 'D3a'">
+                            <option disabled value="7">Entrambe le superfici a vista</option>
+                            <option value="8">Una superficie a vista e una intonacata</option>
+                            <option value="9">Entrambe le superfici intonacate</option>
+                        </select>
+
+                        <select [(ngModel)]="interventoStrutturale.tipo_sup" *ngIf="interventoStrutturale.intervento.codice == 'D3b'">
+                            <option disabled value="10">Entrambe le superfici a vista</option>
+                            <option value="11">Una superficie a vista e una intonacata</option>
+                            <option value="12">Entrambe le superfici intonacate</option>
+                        </select>
+
+                        <select [(ngModel)]="interventoStrutturale.tipo_sup" *ngIf="interventoStrutturale.intervento.codice == 'D4'">
+                            <option disabled value="13">Entrambe le superfici a vista</option>
+                            <option value="14">Una superficie a vista e una intonacata</option>
+                            <option value="15">Entrambe le superfici intonacate</option>
+                        </select>
+                    
+                        <select [(ngModel)]="interventoStrutturale.tipo_sup" *ngIf="interventoStrutturale.intervento.codice == 'D5'">
+                            <option disabled value="16">Entrambe le superfici a vista</option>
+                            <option value="17">Una superficie a vista e una intonacata</option>
+                            <option value="18">Entrambe le superfici intonacate</option>
+                        </select>
+
+                        <select [(ngModel)]="interventoStrutturale.tipo_sup" *ngIf="interventoStrutturale.intervento.codice == 'D6'">
+                            <option disabled value="19">Entrambe le superfici a vista</option>
+                            <option value="20">Una superficie a vista e una intonacata</option>
+                            <option value="21">Entrambe le superfici intonacate</option>
+                        </select>
+
+                        <select [(ngModel)]="interventoStrutturale.tipo_sup" *ngIf="interventoStrutturale.intervento.codice == 'D7'">
+                            <option disabled value="22">Entrambe le superfici a vista</option>
+                            <option value="23">Una superficie a vista e una intonacata</option>
+                            <option value="24">Entrambe le superfici intonacate</option>
+                        </select>
+
+                        <select [(ngModel)]="interventoStrutturale.tipo_sup" *ngIf="interventoStrutturale.intervento.codice == 'D12'">
+                            <option disabled value="25">Entrambe le superfici a vista</option>
+                            <option value="26">Una superficie a vista e una intonacata</option>
+                            <option disabled value="27">Entrambe le superfici intonacate</option>
+                        </select>
+
+                        <select [(ngModel)]="interventoStrutturale.tipo_sup" *ngIf="interventoStrutturale.intervento.codice == 'D13'">
+                            <option disabled value="28">Entrambe le superfici a vista</option>
+                            <option value="29">Una superficie a vista e una intonacata</option>
+                        </select>
+
+                        <select [(ngModel)]="interventoStrutturale.tipo_sup" *ngIf="interventoStrutturale.intervento.codice == 'D10'">
+                            <option disabled value="30">Entrambe le superfici a vista</option>
+                            <option value="31">Una superficie a vista e una intonacata</option>
+                        </select>
+                    
+                    </td>
+
+                    <td style="float: right;" [ngSwitch]="interventoStrutturale.tipo_sup">
+                        <label class="form-check-inline" *ngSwitchCase="2">
+                        <input class="form-check-input" type="radio" name="radio"
+                            [value]="interventoStrutturale.prezzoRiepilogo" (change)="onChangeIntervento($event.target.value)">
+                      </label>
+
+                      <label class="form-check-inline" *ngSwitchCase="4">
+                        <input class="form-check-input" type="radio" name="radio"
+                            [value]="interventoStrutturale.prezzoRiepilogo" (change)="onChangeIntervento($event.target.value)">
+                      </label>
+
+                      <label class="form-check-inline" *ngSwitchCase="32">
+                        <input class="form-check-input" type="radio" name="radio"
+                            [value]="interventoStrutturale.prezzoRiepilogo" (change)="onChangeIntervento($event.target.value)">
+                      </label>
+
+                      <label class="form-check-inline" *ngSwitchCase="34">
+                        <input class="form-check-input" type="radio" name="radio"
+                            [value]="interventoStrutturale.prezzoRiepilogoDue" (change)="onChangeIntervento($event.target.value)">
+                      </label>
+
+                      <label class="form-check-inline" *ngSwitchCase="6">
+                        <input class="form-check-input" type="radio" name="radio"
+                            [value]="interventoStrutturale.prezzoRiepilogo" (change)="onChangeIntervento($event.target.value)">
+                      </label>
+
+                      <label class="form-check-inline" *ngSwitchCase="8">
+                        <input class="form-check-input" type="radio" name="radio"
+                            [value]="interventoStrutturale.prezzoRiepilogo" (change)="onChangeIntervento($event.target.value)">
+                      </label>
+
+                      <label class="form-check-inline" *ngSwitchCase="9">
+                        <input class="form-check-input" type="radio" name="radio"
+                            [value]="interventoStrutturale.prezzoRiepilogoDue" (change)="onChangeIntervento($event.target.value)">
+                      </label>
+
+                      <label class="form-check-inline" *ngSwitchCase="11">
+                        <input class="form-check-input" type="radio" name="radio"
+                            [value]="interventoStrutturale.prezzoRiepilogo" (change)="onChangeIntervento($event.target.value)">
+                      </label>
+
+                      <label class="form-check-inline" *ngSwitchCase="12">
+                        <input class="form-check-input" type="radio" name="radio"
+                            [value]="interventoStrutturale.prezzoRiepilogoDue" (change)="onChangeIntervento($event.target.value)">
+                      </label>
+
+                      <label class="form-check-inline" *ngSwitchCase="14">
+                        <input class="form-check-input" type="radio" name="radio"
+                            [value]="interventoStrutturale.prezzoRiepilogo" (change)="onChangeIntervento($event.target.value)">
+                      </label>
+
+                      <label class="form-check-inline" *ngSwitchCase="15">
+                        <input class="form-check-input" type="radio" name="radio"
+                            [value]="interventoStrutturale.prezzoRiepilogoDue" (change)="onChangeIntervento($event.target.value)">
+                      </label>
+
+                      <label class="form-check-inline" *ngSwitchCase="17">
+                        <input class="form-check-input" type="radio" name="radio"
+                            [value]="interventoStrutturale.prezzoRiepilogo" (change)="onChangeIntervento($event.target.value)">
+                      </label>
+
+                      <label class="form-check-inline" *ngSwitchCase="18">
+                        <input class="form-check-input" type="radio" name="radio"
+                            [value]="interventoStrutturale.prezzoRiepilogoDue" (change)="onChangeIntervento($event.target.value)">
+                      </label>
+
+                      <label class="form-check-inline" *ngSwitchCase="20">
+                        <input class="form-check-input" type="radio" name="radio"
+                            [value]="interventoStrutturale.prezzoRiepilogo" (change)="onChangeIntervento($event.target.value)">
+                      </label>
+
+                      <label class="form-check-inline" *ngSwitchCase="21">
+                        <input class="form-check-input" type="radio" name="radio"
+                            [value]="interventoStrutturale.prezzoRiepilogoDue" (change)="onChangeIntervento($event.target.value)">
+                      </label>
+
+                      <label class="form-check-inline" *ngSwitchCase="23">
+                        <input class="form-check-input" type="radio" name="radio"
+                            [value]="interventoStrutturale.prezzoRiepilogo" (change)="onChangeIntervento($event.target.value)">
+                      </label>
+
+                      <label class="form-check-inline" *ngSwitchCase="24">
+                        <input class="form-check-input" type="radio" name="radio"
+                            [value]="interventoStrutturale.prezzoRiepilogoDue" (change)="onChangeIntervento($event.target.value)">
+                      </label>
+                    
+                      <label class="form-check-inline" *ngSwitchCase="26">
+                        <input class="form-check-input" type="radio" name="radio"
+                            [value]="interventoStrutturale.prezzoRiepilogo" (change)="onChangeIntervento($event.target.value)">
+                      </label>
+
+                      <label class="form-check-inline" *ngSwitchCase="29">
+                        <input class="form-check-input" type="radio" name="radio"
+                            [value]="interventoStrutturale.prezzoRiepilogo" (change)="onChangeIntervento($event.target.value)">
+                      </label>
+
+                      <label class="form-check-inline" *ngSwitchCase="31">
+                        <input class="form-check-input" type="radio" name="radio"
+                            [value]="interventoStrutturale.prezzoRiepilogo" (change)="onChangeIntervento($event.target.value)">
+                      </label>
+
+                      <label class="form-check-inline" *ngSwitchDefault>
+                        <input class="form-check-input" type="radio" name="radio"
+                            [value]="interventoStrutturale.prezzoRiepilogo" (change)="onChangeIntervento($event.target.value)">
+                      </label>
+                    </td>
+                </li>
+            </ul>  
+            
+            <br> 
+
+            <div class="alert alert-danger" role="alert" *ngIf="alarm">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                Questo intervento strutturale non è integrabile!
+              </div>
+
+            <p style="font-size: 17px;" style="margin-top: 10px;"><strong>• Interventi energetici integrabili</strong></p>
+            <select class="form-control" (change)="onChangeEnergetico($event.target.value)">
+                <option value selected="0">Seleziona</option>
+                <option [value]="interventoEn.prezzoRiepilogo" *ngFor="let interventoEn of interv">{{interventoEn.intervento.codice}} - {{interventoEn.intervento.descrizione}}</option>
+            </select>
+
+            <p style="font-size: 17px;" style="margin-top: 10px;"><strong>• Dimensione</strong></p>
+            <input type="number" [value]="dimensioneInput" style="margin-left: 20px;"
+            (input)="dimensioneInput = $event.target.value"> mq
+
+            <div class="pulsante" style="margin-top: 10px;" *ngIf="showButton == true">
+                <button class="btn btn-outline-default" (click)="calcolaSomma()" (click)="mostra()">Calcola</button>
+            </div>
+        </div>
+        <div class="card-footer" *ngIf="showDiv == false">
+            <div class="row">
+                <div class="col-sm-6">
+                    <br>Costo Intervento Strutturale: {{prezzoStrutturale | number: '1.2-2':'fr'}} €/mq<br>
+                    Costo Intervento Energetico: {{prezzoEnergetico | number: '1.2-2':'fr'}} €/mq<br>
+                    Somma: {{somma | number: '1.2-2':'fr'}} €/mq<br>
+                    Costo integrato: {{costoIntegrato | number: '1.2-2':'fr'}} €/mq
+                    <hr>
+                    <strong>Risparmio %: {{risparmioPercentuale | number: '1.0-0'}}%</strong><br>
+                    <strong>Risparmio €: {{risparmioEuro | number: '1.2-2':'fr'}} €/mq</strong>
+                    <hr>
+                    Attrezzature per la sicurezza di uso comune: {{attrezzature}}
+                </div>
+
+                <div class="col-sm-6">
+                    <strong>TOTALE</strong><br>
+                    {{prezzoStrutturaleVisualizz | number: '1.2-2':'fr'}} €<br>
+                    {{prezzoEnergeticoVisualizz | number: '1.2-2':'fr'}} €<br>
+                    {{sommaVisualizz | number: '1.2-2':'fr'}} €<br>
+                    {{costoIntegratoVisualizz | number: '1.2-2':'fr'}} € <button class="btn btn-outline-defaults" (click)="salvaCosti()">+</button> (Clicca + per aggiungere il costo integrato al totale)
+                    <hr>
+                    <strong>{{risparmioPercentuale | number: '1.0-0'}}%</strong><br>
+                    <strong>{{risparmioEuroVisualizz | number: '1.2-2':'fr'}} €</strong>
+                    <hr>
+                    {{attrezzature}}
+                </div>
+            </div> 
+        </div> 
+    </div>
+
+    <div class="card my-5">
+        <div class="card-body">    
+            <div class ="row">
+                <div class="col" style="text-align: center;">
+                    <strong>COSTI PARZIALI STRUTTURALI SENZA INTEGRAZIONI</strong>
+                    <div class="tabella">
+                        <table class="table table-hover table-bordered table-striped" style="display: contents;">
+                            <caption></caption>
+                            <tbody>
+                                <td>
+                                    <div *ngFor="let a of listaStrutturali">{{a}}</div>
+                                </td> 
+                                <td style="text-align: left;">
+                                    <div class="form-check" *ngFor="let parziali of prezzoParziale">
+                                        <input class="form-check-input" type="checkbox" [value]="parziali" id="flexCheckDefault" (change)="onCheck(parziali)">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            {{parziali | number: '1.2-2':'fr'}}€<br>
+                                        </label>
+                                    </div>
+                                </td>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col" style="text-align: center;">
+                    <strong>COSTI PARZIALI INTEGRATI</strong>
+                    <div class="tabella">
+                        <table class="table table-hover table-bordered table-striped" style="display: contents;">
+                            <caption></caption>
+                            <tbody>
+                                <td>
+                                    <div *ngFor="let a of packNomeInterventoIntegrato">{{a}}</div>
+                                </td> 
+                                <td style="text-align: left;">
+                                    <div *ngFor="let costi of packCostiIntegrati">{{costi | number: '1.2-2':'fr'}}€</div>
+                                </td>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="pulsante">
+                <button class="btn btn-outline-default" (click)="calcolaCostoConIntegrati()">Calcola costo di investimento totale con integrazioni</button>
+            </div>
+                <hr>
+                <div style="text-align: center;">Totale: {{totaleIntegrati| number: '1.2-2':'fr'}}€</div>
+        </div>    
+    </div>
+    
+    <div class="pulsante" *ngIf="visualizzaRighe != 1">
+        <button class="btn btn-outline-default" (click)="generatePdf()">Esporta in PDF</button>
+    </div>
+    
+    <label></label>
+    <br><br>
+    
+</div>
+

@@ -1,0 +1,90 @@
+:disabled {
+  color: brown;
+}
+
+.pulsante {
+  text-align: center;
+}
+
+.my-legend .legend-scale ul {
+  margin-top: 10px;
+  margin-left: 15px;
+  margin-bottom: 5px;
+  padding: 0;
+  list-style: none;
+}
+
+.my-legend .legend-scale ul li {
+  font-size: 80%;
+  list-style: none;
+  margin-left: 0;
+  line-height: 18px;
+  margin-bottom: 2px;
+}
+
+.my-legend ul.legend-labels li span {
+  display: block;
+  float: left;
+  height: 16px;
+  width: 30px;
+  margin-right: 5px;
+  margin-left: 0;
+  border: 1px solid #999;
+}
+
+img {
+  max-width: none;
+  width: 800px;
+}
+    
+@media all and (max-width: 500px) {
+  img {
+  max-width: none;
+  width: 800px;
+  }
+}
+
+.btn-default, .btn-default:active, .btn-default:visited {
+  background-color: #ce5e59 !important;
+  color: white;
+}
+
+.btn-default:hover {
+  background-color: #853a36 !important;
+  color: white;
+}
+
+.btn-outline-default, .btn-outline-default:active, .btn-outline-default:visited {
+  background-color: white !important;
+  color: #ce5e59;
+  border-color: #ce5e59;
+}
+
+.btn-outline-default:hover {
+  background-color: #ce5e59 !important;
+  color: white;
+}
+
+.progress-bar-1 {
+  text-align: center;
+  background-color: #5c2a28;
+  color: white
+}
+
+.progress-bar-2 {
+  text-align: center;
+  background-color: #893f3b;
+  color: white
+}
+
+.progress-bar-3 {
+  text-align: center;
+  background-color: #b7544f;
+  color: white
+}
+
+.progress-bar-4 {
+  text-align: center;
+  background-color: #d3706b;
+  color: white
+}

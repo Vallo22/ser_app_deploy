@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: Swiss_721;
+    src: url(assets/font/SWISS.TTF);
+}
+html, body {
+    font-family: Swiss_721, sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}

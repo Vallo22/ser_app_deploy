@@ -1,0 +1,11 @@
+.navbar-default {
+    background: -webkit-linear-gradient(120deg, #f0f0ef 15%, #ce5e59 15%);
+    background: -o-linear-gradient(120deg, #f0f0ef 15%, #ce5e59 15%);
+    background: -moz-linear-gradient(120deg,#f0f0ef 15%, #ce5e59 15%);
+    background: linear-gradient(120deg, #f0f0ef 15%, #ce5e59 15%);
+}
+
+.navbar-default .navbar-brand {
+    color: #ce5e59;
+    margin-left: 50px;
+}

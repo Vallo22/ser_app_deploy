@@ -1,0 +1,105 @@
+<div class="container">
+
+  <!-- PROGRESS BAR -->
+  <div class="progress" style="margin-top: 30px">
+    <div class="progress-bar-1" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">STEP 1</div>
+  </div>
+  
+  <div class="titolo" style="text-align: center;margin-top: 30px; font-size: 30px;">
+    <strong>Determinazione della classe di rischio</strong>
+  </div>
+
+  <div class="card" style="margin-top: 30px;">
+    <div class="card-header" style="text-align: center; font-size: 18px;">
+      <strong>Seleziona il tipo di zona sismica</strong>
+    </div>
+    <div class="card-body">
+      <select [(ngModel)]="valore" class="form-control" id="id1" (change)="onChange($event.target.value)">
+        <option disabled selected>Seleziona</option>
+        <option [value]="numero.id" *ngFor="let numero of zonaSismica;index as i">
+          {{numero.id}}
+        </option>
+      </select>
+
+      <div class="pulsante" style="text-align: center;" *ngIf="valore">
+        <button type="submit" (click)="gradoDiRischio()"
+          style="margin-top: 20px;" class="btn btn-outline-default">Ottieni risultato</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 20px;">
+
+    <div class="col-sm-6" style="text-align: center;">
+      <div class="card">
+        <div class="card-header">
+          <p style="text-align: center; font-size: 18px;"><strong>Classe di vulnerabilità - Punteggio: {{punteggio}}</strong></p>
+        </div>
+        <div class="card-body">
+
+          <div style="text-align: center;">
+            <div style="margin-top: 10px;" *ngIf="vulClassImg1 == true">
+              <img class="imgVulClass" src="assets\images\parte_strutturale\V1.png" alt="Generic placeholder image">
+            </div>
+            <div style="margin-top: 10px;" *ngIf="vulClassImg2 == true">
+              <img class="imgVulClass" src="assets\images\parte_strutturale\V2.png" alt="Generic placeholder image">
+            </div>
+            <div style="margin-top: 10px;" *ngIf="vulClassImg3 == true">
+              <img class="imgVulClass" src="assets\images\parte_strutturale\V3.png" alt="Generic placeholder image">
+            </div>
+            <div style="margin-top: 10px;" *ngIf="vulClassImg4 == true">
+              <img class="imgVulClass" src="assets\images\parte_strutturale\V4.png" alt="Generic placeholder image">
+            </div>
+            <div style="margin-top: 10px;" *ngIf="vulClassImg5 == true">
+              <img class="imgVulClass" src="assets\images\parte_strutturale\V5.png" alt="Generic placeholder image">
+            </div>
+            <div style="margin-top: 10px;" *ngIf="vulClassImg6 == true">
+              <img class="imgVulClass" src="assets\images\parte_strutturale\V6.png" alt="Generic placeholder image">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6" style="text-align: center;">
+      <div class="card">
+        <div class="card-header">
+          <p style="text-align: center; font-size: 18px;"><strong>Zona sismica</strong></p>
+        </div>
+
+        <div class="card-body">
+          <div style="text-align: center;">
+            <div style="margin-top: 20px;" *ngIf="classeAA">
+              <img class="imgRisk" src="assets\images\parte_strutturale\classe A+.png" alt="Generic placeholder image">
+            </div>
+            <div style="margin-top: 20px;" *ngIf="classeA">
+              <img class="imgRisk" src="assets\images\parte_strutturale\classe A.png" alt="Generic placeholder image">
+            </div>
+            <div style="margin-top: 20px;" *ngIf="classeB">
+              <img class="imgRisk" src="assets\images\parte_strutturale\classe B.png" alt="Generic placeholder image">
+            </div>
+            <div style="margin-top: 20px;" *ngIf="classeC">
+              <img class="imgRisk" src="assets\images\parte_strutturale\classe C.png" alt="Generic placeholder image">
+            </div>
+            <div style="margin-top: 20px;" *ngIf="classeD">
+              <img class="imgRisk" src="assets\images\parte_strutturale\classe D.png" alt="Generic placeholder image">
+            </div>
+            <div style="margin-top: 20px;" *ngIf="classeE">
+              <img class="imgRisk" src="assets\images\parte_strutturale\classe E.png" alt="Generic placeholder image">
+            </div>
+            <div style="margin-top: 20px;" *ngIf="classeF">
+              <img class="imgRisk" src="assets\images\parte_strutturale\classe F.png" alt="Generic placeholder image">
+            </div>
+            <div style="margin-top: 20px;" *ngIf="classeG">
+              <img class="imgRisk" src="assets\images\parte_strutturale\classe G.png" alt="Generic placeholder image">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align: center;">
+  <button class="bottone" *ngIf="far" style="margin-top: 20px; margin-bottom: 30px;" (click)="mandaValori()" 
+            class="btn btn-default">Prosegui con la valutazione &raquo;</button>
+  </div>
+</div>

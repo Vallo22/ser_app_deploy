@@ -1,0 +1,343 @@
+<div class="container">
+
+  <!-- PROGRESS BAR -->
+  <div class="progress" style="margin-top: 30px">
+    <div class="progress-bar-1" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">STEP 1</div>
+  </div>
+  
+  <!-- TITOLO -->
+  <div class="titolo" style="text-align: center;margin-top: 30px; font-size: 30px;">
+    <p><strong>Caratteristiche qualitative dell'edificio</strong></p>
+    <hr>
+  </div>
+
+  <!-- LEGENDA -->
+  <div>
+    <summary><strong>Livelli di criticità</strong></summary>
+    <div class='my-legend'>
+      <div class='legend-scale'>
+        <ul class='legend-labels'>
+          <li><span style='background:#ce5e59;'></span>Alto</li>
+          <li><span style='background:#fad677;'></span>Medio</li>
+          <li><span style='background:#5a8982;'></span>Basso</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="card my-5">
+    <!-- TUTTE LE SELEZIONI -->
+    <div class="card-body">
+      <form>
+        <div>
+          <div name="edificio">
+            <div style="font-size: 17px;" *ngFor="let EdificioInAggregato1 of quality | slice:0:1;">
+              <strong>• {{ EdificioInAggregato1.quality }}</strong>
+            </div>
+          </div>
+          <select [(ngModel)]="selezione[0]" style="margin-top: 10px;" class="form-control" name="edificio0" id="id1">
+            <option [ngValue]="EdificioInAggregato1.id" [ngStyle]="{'font-weight': 'bold','color': getColors(i) }"
+              *ngFor="let EdificioInAggregato1 of edificioSelezionato1 | slice:0:3; index as i">
+              {{ EdificioInAggregato1.descrizione }} <p>|</p>
+              {{ EdificioInAggregato1.punteggio }}
+            </option>
+          </select>
+        </div>
+
+        <div>
+          <label for="tipologiaStrutture"><strong>
+              <hr>
+            </strong></label>
+          <div name="edificio">
+            <div style="font-size: 17px;" *ngFor="let EdificioInAggregato1 of quality | slice:1:2;">
+              <strong>• {{ EdificioInAggregato1.quality }}</strong>
+            </div>
+          </div>
+          <select [(ngModel)]="selezione[1]" style="margin-top: 10px;" class="form-control" name="edificio1" id="id2">
+            <option [ngValue]="EdificioInAggregato1.id" [ngStyle]="{'font-weight': 'bold','color': getColors(i) }"
+              *ngFor="let EdificioInAggregato1 of edificioSelezionato1 | slice:3:6; index as i">
+              {{ EdificioInAggregato1.descrizione }} <p>|</p>
+              {{ EdificioInAggregato1.punteggio }}
+            </option>
+          </select>
+        </div>
+
+        <div>
+          <label for="tipologiaStrutture"><strong>
+              <hr>
+            </strong></label>
+          <div name="edificio">
+            <div style="font-size: 17px;" *ngFor="let EdificioInAggregato1 of quality | slice:2:3;">
+              <strong>• {{ EdificioInAggregato1.quality }}</strong>
+            </div>
+          </div>
+          <select [(ngModel)]="selezione[2]" style="margin-top: 10px;" class="form-control" name="edificio2" id="id3">
+            <option [ngValue]="EdificioInAggregato1.id" [ngStyle]="{'font-weight': 'bold','color': getColors(i) }"
+              *ngFor="let EdificioInAggregato1 of edificioSelezionato1| slice:6:9; index as i">
+              {{ EdificioInAggregato1.descrizione }} <p>|</p>
+              {{ EdificioInAggregato1.punteggio }}
+            </option>
+          </select>
+        </div>
+
+
+        <div>
+          <label for="tipologiaStrutture"><strong>
+              <hr>
+            </strong></label>
+          <div name="edificio" id="1">
+            <div style="font-size: 17px;" *ngFor="let EdificioInAggregato1 of quality | slice:3:4;">
+              <strong>• {{ EdificioInAggregato1.quality }}</strong>
+            </div>
+          </div>
+          <select [(ngModel)]="selezione[3]" style="margin-top: 10px;" class="form-control" name="edificio3" id="id4">
+            <option [ngValue]="EdificioInAggregato1.id" [ngStyle]="{'font-weight': 'bold','color': getColors(i) }"
+              *ngFor="let EdificioInAggregato1 of edificioSelezionato1| slice:9:12; index as i">
+              {{ EdificioInAggregato1.descrizione }} <p>|</p>
+              {{ EdificioInAggregato1.punteggio }}
+            </option>
+          </select>
+        </div>
+
+
+        <div>
+          <label for="tipologiaStrutture"><strong>
+              <hr>
+            </strong></label>
+          <div name="edificio" id="1">
+            <div style="font-size: 17px;" *ngFor="let EdificioInAggregato1 of quality | slice:4:5;">
+              <strong>• {{ EdificioInAggregato1.quality }}</strong>
+            </div>
+          </div>
+          <select [(ngModel)]="selezione[4]" style="margin-top: 10px;" class="form-control" name="edificio4" id="id5">
+            <option [ngValue]="EdificioInAggregato1.id" [ngStyle]="{'font-weight': 'bold','color': getColors(i) }"
+              *ngFor="let EdificioInAggregato1 of edificioSelezionato1| slice:12:15; index as i">
+              {{ EdificioInAggregato1.descrizione }} <p>|</p>
+              {{ EdificioInAggregato1.punteggio }}
+            </option>
+          </select>
+        </div>
+
+
+
+        <div>
+          <label for="tipologiaStrutture"><strong>
+              <hr>
+            </strong></label>
+          <div name="edificio" id="1">
+            <div style="font-size: 17px;" *ngFor="let EdificioInAggregato1 of quality | slice:5:6;">
+              <strong>• {{ EdificioInAggregato1.quality }}</strong>
+            </div>
+          </div>
+          <select [(ngModel)]="selezione[5]" style="margin-top: 10px;" class="form-control" name="edificio5" id="id6">
+            <option [ngValue]="EdificioInAggregato1.id" [ngStyle]="{'font-weight': 'bold','color': getColors(i) }"
+              *ngFor="let EdificioInAggregato1 of edificioSelezionato1| slice:15:18; index as i">
+              {{ EdificioInAggregato1.descrizione }} <p>|</p>
+              {{ EdificioInAggregato1.punteggio }}
+            </option>
+          </select>
+        </div>
+
+
+        <div>
+          <label for="tipologiaStrutture"><strong>
+              <hr>
+            </strong></label>
+          <div name="edificio" id="1">
+            <div style="font-size: 17px;" *ngFor="let EdificioInAggregato1 of quality | slice:6:7;">
+              <strong>• {{ EdificioInAggregato1.quality }}</strong>
+            </div>
+          </div>
+          <select [(ngModel)]="selezione[6]" style="margin-top: 10px;" class="form-control" name="edificio6" id="id7">
+            <option [ngValue]="EdificioInAggregato1.id" [ngStyle]="{'font-weight': 'bold','color': getColors(i) }"
+              *ngFor="let EdificioInAggregato1 of edificioSelezionato1| slice:18:21; index as i">
+              {{ EdificioInAggregato1.descrizione }} <p>|</p>
+              {{ EdificioInAggregato1.punteggio }}
+            </option>
+          </select>
+        </div>
+
+        <div>
+          <label for="tipologiaStrutture"><strong>
+              <hr>
+            </strong></label>
+          <div name="edificio" id="1">
+            <div style="font-size: 17px;" *ngFor="let EdificioInAggregato1 of quality | slice:7:8;">
+              <strong>• {{ EdificioInAggregato1.quality }}</strong>
+            </div>
+          </div>
+          <select [(ngModel)]="selezione[7]" style="margin-top: 10px;" class="form-control" name="edificio7" id="id8">
+            <option [ngValue]="EdificioInAggregato1.id" [ngStyle]="{'font-weight': 'bold','color': getColors(i) }"
+              *ngFor="let EdificioInAggregato1 of edificioSelezionato1| slice:21:24; index as i">
+              {{ EdificioInAggregato1.descrizione }} <p>|</p>
+              {{ EdificioInAggregato1.punteggio }}
+            </option>
+          </select>
+        </div>
+
+
+        <div>
+          <label for="tipologiaStrutture"><strong>
+              <hr>
+            </strong></label>
+          <div name="edificio" id="1">
+            <div style="font-size: 17px;" *ngFor="let EdificioInAggregato1 of quality | slice:8:9;">
+              <strong>• {{ EdificioInAggregato1.quality }}</strong>
+            </div>
+          </div>
+          <select [(ngModel)]="selezione[8]" style="margin-top: 10px;" class="form-control" name="edificio8" id="id9">
+            <option [ngValue]="EdificioInAggregato1.id" [ngStyle]="{'font-weight': 'bold','color': getColors(i) }"
+              *ngFor="let EdificioInAggregato1 of edificioSelezionato1| slice:24:27; index as i">
+              {{ EdificioInAggregato1.descrizione }} <p>|</p>
+              {{ EdificioInAggregato1.punteggio }}
+            </option>
+          </select>
+        </div>
+
+        <div>
+          <label for="tipologiaStrutture"><strong>
+              <hr>
+            </strong></label>
+          <div name="edificio" id="1">
+            <div style="font-size: 17px;" *ngFor="let EdificioInAggregato1 of quality | slice:9:10;">
+              <strong>• {{ EdificioInAggregato1.quality }}</strong>
+            </div>
+          </div>
+          <select [(ngModel)]="selezione[9]" style="margin-top: 10px;" class="form-control" name="edificio9" id="id10">
+            <option [ngValue]="EdificioInAggregato1.id" [ngStyle]="{'font-weight': 'bold','color': getColors(i) }"
+              *ngFor="let EdificioInAggregato1 of edificioSelezionato1| slice:27:30; index as i">
+              {{ EdificioInAggregato1.descrizione }} <p>|</p>
+              {{ EdificioInAggregato1.punteggio }}
+            </option>
+          </select>
+        </div>
+
+        <div>
+          <label for="tipologiaStrutture"><strong>
+              <hr>
+            </strong></label>
+          <div name="edificio" id="1">
+            <div style="font-size: 17px;" *ngFor="let EdificioInAggregato1 of quality | slice:10:11;">
+              <strong>• {{ EdificioInAggregato1.quality }}</strong>
+            </div>
+          </div>
+          <select [(ngModel)]="selezione[10]" style="margin-top: 10px;" class="form-control" name="edificio10"
+            id="id11">
+            <option [ngValue]="EdificioInAggregato1.id" [ngStyle]="{'font-weight': 'bold','color': getColors(i) }"
+              *ngFor="let EdificioInAggregato1 of edificioSelezionato1| slice:30:33; index as i">
+              {{ EdificioInAggregato1.descrizione }} <p>|</p>
+              {{ EdificioInAggregato1.punteggio }}
+            </option>
+          </select>
+        </div>
+
+        <div>
+          <label for="tipologiaStrutture"><strong>
+              <hr>
+            </strong></label>
+          <div name="edificio" id="1">
+            <div style="font-size: 17px;" *ngFor="let EdificioInAggregato1 of quality | slice:11:12;">
+              <strong>• {{ EdificioInAggregato1.quality }}</strong>
+            </div>
+          </div>
+          <select [(ngModel)]="selezione[11]" style="margin-top: 10px;" class="form-control" name="edificio11"
+            id="id12">
+            <option [ngValue]="EdificioInAggregato1.id" [ngStyle]="{'font-weight': 'bold','color': getColors(i) }"
+              *ngFor="let EdificioInAggregato1 of edificioSelezionato1| slice:33:36; index as i">
+              {{ EdificioInAggregato1.descrizione }} <p>|</p>
+              {{ EdificioInAggregato1.punteggio }}
+            </option>
+          </select>
+        </div>
+
+        <div>
+          <label for="tipologiaStrutture"><strong>
+              <hr>
+            </strong></label>
+          <div name="edificio" id="1">
+            <div style="font-size: 17px;" *ngFor="let EdificioInAggregato1 of quality | slice:12:13;">
+              <strong>• {{ EdificioInAggregato1.quality }}</strong>
+            </div>
+          </div>
+          <select [(ngModel)]="selezione[12]" style="margin-top: 10px;" class="form-control" name="edificio12"
+            id="id13">
+            <option [ngValue]="EdificioInAggregato1.id" [ngStyle]="{'font-weight': 'bold','color': getColors(i) }"
+              *ngFor="let EdificioInAggregato1 of edificioSelezionato1| slice:36:39; index as i">
+              {{ EdificioInAggregato1.descrizione }} <p>|</p>
+              {{ EdificioInAggregato1.punteggio }}
+            </option>
+          </select>
+        </div>
+
+        <div>
+          <label for="tipologiaStrutture"><strong>
+              <hr>
+            </strong></label>
+          <div name="edificio" id="1">
+            <div style="font-size: 17px;" *ngFor="let EdificioInAggregato1 of quality | slice:13:14;">
+              <strong>• {{ EdificioInAggregato1.quality }}</strong>
+            </div>
+          </div>
+          <select [(ngModel)]="selezione[13]" style="margin-top: 10px;" class="form-control" name="edificio13"
+            id="id14">
+            <option [ngValue]="EdificioInAggregato1.id" [ngStyle]="{'font-weight': 'bold','color': getColors(i) }"
+              *ngFor="let EdificioInAggregato1 of edificioSelezionato1| slice:39:42; index as i">
+              {{ EdificioInAggregato1.descrizione }} <p>|</p>
+              {{ EdificioInAggregato1.punteggio }}
+            </option>
+          </select>
+        </div>
+
+        <div>
+          <label for="tipologiaStrutture"><strong>
+              <hr>
+            </strong></label>
+          <div name="edificio" id="1">
+            <div style="font-size: 17px;" *ngFor="let EdificioInAggregato1 of quality | slice:14:15;">
+              <strong>• {{ EdificioInAggregato1.quality }}</strong>
+            </div>
+          </div>
+          <select [(ngModel)]="selezione[14]" style="margin-top: 10px;" class="form-control" name="edificio14"
+            id="id15">
+            <option [ngValue]="EdificioInAggregato1.id" [ngStyle]="{'font-weight': 'bold','color': getColors(i) }"
+              *ngFor="let EdificioInAggregato1 of edificioSelezionato1| slice:42:45; index as i">
+              {{ EdificioInAggregato1.descrizione }} <p>|</p>
+              {{ EdificioInAggregato1.punteggio }}
+            </option>
+          </select>
+        </div>
+      </form>
+    </div>
+
+    <!-- PULSANTI -->
+    <div class="card-footer" style="text-align: center;">
+      <div class="pulsante1" style="display: inline-block">
+        <button style="margin-top: 5px; margin-right: 30px;" class="btn btn-md1 btn-defaultn display-4"
+          routerLink="/edificio-singolo-st" routerLinkActive="active">&laquo; Indietro</button>
+      </div>
+      <div class="pulsante" style="display: inline-block">
+        <button type="submit" (click)="outputSelection()" style="margin-top: 5px"
+          class="btn btn-outline-default">Ottieni risultato</button>
+      </div>
+      <hr>
+
+      <!-- RISULTATO -->
+      <div class="row" style="justify-content: center;" *ngIf="msg1">
+        <div class="col-lg-12">
+          <div class="alert">
+            <div id="boxPunteggio">
+              <p>Il risultato della somma dei punteggi è: <strong>{{totalePunteggio}}</strong></p>
+              <p>La classe di vulnerabilità è: <strong>V<sub>{{vulnerability}}</sub></strong></p>
+              <button type="submit" (click)="trasferisciClassVul()" class="btn btn-default">
+                Scegli il tipo di zona sismica &raquo;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

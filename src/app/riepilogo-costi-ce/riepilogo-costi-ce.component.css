@@ -1,0 +1,47 @@
+.tabella{
+    margin-right: auto;
+    margin-left: auto;
+    width: fit-content;
+    text-align: center;
+}
+
+.card-header{
+    height: 50px;
+}
+
+.btn-outline-default, .btn-outline-default:active, .btn-outline-default:visited {
+  background-color: white !important;
+  color: #ce5e59;
+  border-color: #ce5e59;
+}
+
+.btn-outline-default:hover {
+  background-color: #ce5e59 !important;
+  color: white;
+}
+
+.pulsante1 {
+  text-align: center;
+}
+
+.progress-bar-1 {
+  text-align: center;
+  background-color: #893f3b;
+  color: white
+}
+
+.progress-bar-2 {
+  text-align: center;
+  background-color: #b7544f;
+  color: white
+}
+
+.progress-bar-3 {
+  text-align: center;
+  background-color: #d3706b;
+  color: white
+}
+
+.pulsante {
+  text-align: center;
+}

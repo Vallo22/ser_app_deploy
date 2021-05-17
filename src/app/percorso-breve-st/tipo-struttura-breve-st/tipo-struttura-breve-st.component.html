@@ -1,0 +1,473 @@
+<div class="container">
+
+    <!-- PROGRESS BAR -->
+    <div class="progress" style="margin-top: 30px">
+      <div class="progress-bar-1" role="progressbar" style="width: 33.3%" aria-valuenow="33.3" aria-valuemin="0" aria-valuemax="100">STEP 1</div>
+    </div>
+    
+    <div class="titolo" style="text-align: center;margin-top: 30px; font-size: 30px;">
+      <p><strong>Individuazione degli interventi</strong></p>
+    </div>
+  
+    <!-- ALERT -->
+    <div class="alert alert-danger" role="alert" *ngIf="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      Seleziona una struttura e una caratteristica qualitativa per proseguire!
+    </div>
+  
+    <!-- ALERT 2 -->
+    <div class="alert alert-danger" role="alert" *ngIf="alert2">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      Non è possibile proseguire se non si ha a disposizione almeno un intervento selezionabile!
+    </div>
+  
+    <div class="card my-5">
+      <div class="card-header" style="text-align: center; font-size: 20px;">
+        <p><strong>Alternative tecniche</strong></p>
+      </div>
+      <div class="card-body">
+            <!-- STRUTTURA UNO -->
+            <p style="font-size: 17px;"><strong>• Classi primarie di elementi tecnici (LV3)</strong></p>
+            <select value="structure" class="form-control" id="structure" (change)="onChange($event.target.value)"
+              name="struttura">
+              <option selected disabled>
+                Seleziona
+              </option>
+              <option [value]="i" *ngFor="let array of typeStruttura; index as i">
+                {{ array.typeName }}
+              </option>
+            </select>
+            <label></label>
+            <!-- STRUTTURA DUE -->
+            <p style="font-size: 17px;"><strong>• Classi secondarie di elementi tecnici (LV4)</strong></p>
+            <select [(ngModel)]="selectedIndex" (change)="onChangeSecondo($event.target.value)"
+              value="struttura" class="form-control" id="structure" name="struttura">
+              <option selected disabled>
+                Seleziona
+              </option>
+              <option [value]="i" *ngFor="let arr of selectedElement; index as i;">
+                {{arr.struttura}}
+              </option>
+            </select>
+  
+      </div>
+    </div>
+  
+    <!-- CARATTERISTICHE QUALITATIVE -->
+    <div class="card my-5">
+      <div class="card-header" style="text-align: center; font-size: 20px;">
+        <p><strong>Caratteristiche qualitative</strong></p>
+      </div>
+      <div class="card-body">
+            <select [(ngModel)]="selectArr" value="struttura"
+              (change)="onChangeCaratteristicheQualitative($event.target.value)" class="form-control" id="structure"
+              name="struttura">
+              <option disabled selected [value]="0">Seleziona</option>
+              <option [value]="i" *ngFor="let car of caratteristiche; index as i">
+                {{car.caratteristicheQualitative}}
+              </option>
+            </select>
+      </div>
+    </div>
+  
+    <!-- INTERVENTI -->
+    <div class="card my-5">
+      <div class="card-header" style="text-align: center; font-size: 20px;">
+        <p><strong>Interventi</strong></p>
+      </div>
+      <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let arr of variabileIntervento; index as i">
+              <div *ngIf="arr.intervento.id != 77">
+              <td style="float: left; max-width:850px; word-wrap:break-word;"><strong>
+                  Codice: {{arr.intervento.codice}}
+                  - {{arr.intervento.descrizione}}</strong>
+                  <!-- CASI PARTICOLARI -->
+                  <div *ngIf="arr.intervento.id == 32" style="font-size: 10px;">
+                  * nel caso di murature a sacco l'intervento può essere vanificato da un'eccessiva presenza di vuoti: una quantità
+                  di materiale iniettato troppo elevata comporta un aumento inammissibile del peso del parametro murario.</div>
+              </td>
+              <td style="float: right">
+                <div class="row">
+                  <div class="col">
+                    <button class="btn btn-outline-default" (click)="visualizzaCodiceIntervento(arr.intervento.codice)"
+                  data-toggle="modal" data-target="#modal-1">
+                  Vai all'intervento
+                </button>
+                  </div>
+                  <div class="col">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" [disabled]="arraySelezionati.length > 0"
+                        class="form-check-input" (click)="premiBottone(arr)">
+                    </div>
+                  </div>
+                </div>
+                
+                
+              </td>
+            </div>
+            </li>
+          </ul>
+      </div>
+    </div>
+  
+    <!-- TAB.01 -->
+    <div class="card my-5" *ngIf="showTab == true">
+      <div class="card-body">
+        Per degrado materico: <button class="btn btn-outline-default" (click)="visualizzaTab01(1)"
+        data-toggle="modal" data-target="#modal-3">Vai alla Tab.01</button>
+      </div>
+    </div>
+  
+    <!-- TAB.02 -->
+    <div class="card my-5" *ngIf="showTabDue == true">
+      <div class="card-body">
+        Per degrado materico: <button class="btn btn-outline-default" (click)="visualizzaTab02(1)"
+        data-toggle="modal" data-target="#modal-4">Vai alla Tab.02</button>
+      </div>
+    </div>
+
+    <table class="table table-hover table-bordered" *ngIf="buttonIntervento == true">
+      <caption></caption>
+      <tbody>
+        <tr>
+          <th scope="col" colspan="2" style="text-align: center;">
+            <button class="btn btn-default" (click)="aggiuntaInterventoSecondario()">
+              Aggiungi un intervento ulteriore &#8635;
+            </button>
+            <button class="btn btn-default" (click)="trasferisciClasseDiRischio()" style="margin-left: 10px;">
+              Termina e calcola costi &raquo;
+            </button>
+          </th>
+        </tr>
+      </tbody>
+    </table>
+  
+    
+    <!-- MODAL INTERVENTI -->
+    <div class="modal fade" id="modal-1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+  
+            <!-- X -->
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+  
+          <!-- IMMAGINI -->
+          <div *ngIf="imgA1 && imgA1parte2">
+            <img src="assets\images\parte_strutturale\A1_1.jpg" alt="Codice A1_1">
+            <img src="assets\images\parte_strutturale\A1_2.jpg" alt="Codice A1_2">
+          </div>
+          <div *ngIf="imgA2">
+            <img src="assets\images\parte_strutturale\A2.jpg" alt="Codice A2">
+          </div>
+          <div *ngIf="imgA3 && imgA3parte2">
+            <img src="assets\images\parte_strutturale\A3_1.jpg" alt="Codice A3_1">
+            <img src="assets\images\parte_strutturale\A3_2.jpg" alt="Codice A3_2">
+          </div>
+          <div *ngIf="imgA4">
+            <img src="assets\images\parte_strutturale\A4.jpg" alt="Codice A4">
+          </div>
+          <div *ngIf="imgA5">
+            <img src="assets\images\parte_strutturale\A5.jpg" alt="Codice A5">
+          </div>
+          <div *ngIf="imgA6 == true && imgA6parte2 == true">
+            <img src="assets\images\parte_strutturale\A6_1.jpg" alt="Codice A6_1">
+            <img src="assets\images\parte_strutturale\A6_2.jpg" alt="Codice A6_2">
+          </div>
+          <div *ngIf="imgA7">
+            <img src="assets\images\parte_strutturale\A7.jpg" alt="Codice A7">
+          </div>
+          <div *ngIf="imgA8">
+            <img src="assets\images\parte_strutturale\A8.jpg" alt="Codice A8">
+          </div>
+          <div *ngIf="imgB1">
+            <img src="assets\images\parte_strutturale\B1.jpg" alt="Codice B1">
+          </div>
+          <div *ngIf="imgB2">
+            <img src="assets\images\parte_strutturale\B2.jpg" alt="Codice B2">
+          </div>
+          <div *ngIf="imgB3">
+            <img src="assets\images\parte_strutturale\B3.jpg" alt="Codice B3">
+          </div>
+          <div *ngIf="imgB4">
+            <img src="assets\images\parte_strutturale\B4.jpg" alt="Codice B4">
+          </div>
+          <div *ngIf="imgB5">
+            <img src="assets\images\parte_strutturale\B5.jpg" alt="Codice B5">
+          </div>
+          <div *ngIf="imgB6">
+            <img src="assets\images\parte_strutturale\B6.jpg" alt="Codice B6">
+          </div>
+          <div *ngIf="imgB7">
+            <img src="assets\images\parte_strutturale\B7.jpg" alt="Codice B7">
+          </div>
+          <div *ngIf="imgB8">
+            <img src="assets\images\parte_strutturale\B8.jpg" alt="Codice B8">
+          </div>
+          <div *ngIf="imgB9">
+            <img src="assets\images\parte_strutturale\B9.jpg" alt="Codice B9">
+          </div>
+          <div *ngIf="imgB10">
+            <img src="assets\images\parte_strutturale\B10.jpg" alt="Codice B10">
+          </div>
+          <div *ngIf="imgB11">
+            <img src="assets\images\parte_strutturale\B11.jpg" alt="Codice B11">
+          </div>
+          <div *ngIf="imgB12">
+            <img src="assets\images\parte_strutturale\B12.jpg" alt="Codice B12">
+          </div>
+          <div *ngIf="imgB13">
+            <img src="assets\images\parte_strutturale\B13.jpg" alt="Codice B13">
+          </div>
+          <div *ngIf="imgB14">
+            <img src="assets\images\parte_strutturale\B14.jpg" alt="Codice B14">
+          </div>
+          <div *ngIf="imgB15">
+            <img src="assets\images\parte_strutturale\B15.jpg" alt="Codice B15">
+          </div>
+          <div *ngIf="imgC1">
+            <img src="assets\images\parte_strutturale\C1.jpg" alt="Codice C1">
+          </div>
+          <div *ngIf="imgC2">
+            <img src="assets\images\parte_strutturale\C2.jpg" alt="Codice C2">
+          </div>
+          <div *ngIf="imgC3">
+            <img src="assets\images\parte_strutturale\C3.jpg" alt="Codice C3">
+          </div>
+          <div *ngIf="imgC4">
+            <img src="assets\images\parte_strutturale\C4.jpg" alt="Codice C4">
+          </div>
+          <div *ngIf="imgC5">
+            <img src="assets\images\parte_strutturale\C5.jpg" alt="Codice C5">
+          </div>
+          <div *ngIf="imgC6">
+            <img src="assets\images\parte_strutturale\C6.jpg" alt="Codice C6">
+          </div>
+          <div *ngIf="imgC7">
+            <img src="assets\images\parte_strutturale\C7.jpg" alt="Codice C7">
+          </div>
+          <div *ngIf="imgC8">
+            <img src="assets\images\parte_strutturale\C8.jpg" alt="Codice C8">
+          </div>
+          <div *ngIf="imgD1">
+            <img src="assets\images\parte_strutturale\D1.jpg" alt="Codice D1">
+          </div>
+          <div *ngIf="imgD2 == true && imgD2parte2 == true">
+            <img src="assets\images\parte_strutturale\D2_1.jpg" alt="Codice D2_1">
+            <img src="assets\images\parte_strutturale\D2_2.jpg" alt="Codice D2_2">
+          </div>
+          <div *ngIf="imgD3">
+            <img src="assets\images\parte_strutturale\D3.jpg" alt="Codice D3">
+          </div>
+          <div *ngIf="imgD4">
+            <img src="assets\images\parte_strutturale\D4.jpg" alt="Codice D4">
+          </div>
+          <div *ngIf="imgD5">
+            <img src="assets\images\parte_strutturale\D5.jpg" alt="Codice D5">
+          </div>
+          <div *ngIf="imgD6">
+            <img src="assets\images\parte_strutturale\D6.jpg" alt="Codice D6">
+          </div>
+          <div *ngIf="imgD7 == true && imgD7parte2 == true">
+            <img src="assets\images\parte_strutturale\D7_1.jpg" alt="Codice D7_1">
+            <img src="assets\images\parte_strutturale\D7_2.jpg" alt="Codice D7_2">
+          </div>
+          <div *ngIf="imgD8">
+            <img src="assets\images\parte_strutturale\D8.jpg" alt="Codice D8">
+          </div>
+          <div *ngIf="imgD9">
+            <img src="assets\images\parte_strutturale\D9.jpg" alt="Codice D9">
+          </div>
+          <div *ngIf="imgD10">
+            <img src="assets\images\parte_strutturale\D10.jpg" alt="Codice D10">
+          </div>
+          <div *ngIf="imgD11">
+            <img src="assets\images\parte_strutturale\D11.jpg" alt="Codice D11">
+          </div>
+          <div *ngIf="imgD12">
+            <img src="assets\images\parte_strutturale\D12.jpg" alt="Codice D12">
+          </div>
+          <div *ngIf="imgD13">
+            <img src="assets\images\parte_strutturale\D13.jpg" alt="Codice D13">
+          </div>
+          <div *ngIf="imgD14">
+            <img src="assets\images\parte_strutturale\D14.jpg" alt="Codice D14">
+          </div>
+          <div *ngIf="imgF1">
+            <img src="assets\images\parte_strutturale\F1.jpg" alt="Codice F1">
+          </div>
+          <div *ngIf="imgF2">
+            <img src="assets\images\parte_strutturale\F2.jpg" alt="Codice F2">
+          </div>
+          <div *ngIf="imgF3">
+            <img src="assets\images\parte_strutturale\F3.jpg" alt="Codice F3">
+          </div>
+          <div *ngIf="imgF4">
+            <img src="assets\images\parte_strutturale\F4.jpg" alt="Codice F4">
+          </div>
+          <div *ngIf="imgG1">
+            <img src="assets\images\parte_strutturale\G1.jpg" alt="Codice G1">
+          </div>
+          <div *ngIf="imgG2">
+            <img src="assets\images\parte_strutturale\G2.jpg" alt="Codice G2">
+          </div>
+          <div *ngIf="imgG3 == true && imgG3parte2 == true">
+            <img src="assets\images\parte_strutturale\G3_1.jpg" alt="Codice G3_1">
+            <img src="assets\images\parte_strutturale\G3_2.jpg" alt="Codice G3_2">
+          </div>
+          <div *ngIf="imgG4 == true && imgG4parte2 == true">
+            <img src="assets\images\parte_strutturale\G4_1.jpg" alt="Codice G4_1">
+            <img src="assets\images\parte_strutturale\G4_2.jpg" alt="Codice G4_2">
+          </div>
+          <div *ngIf="imgG5">
+            <img src="assets\images\parte_strutturale\G5.jpg" alt="Codice G5">
+          </div>
+          <div *ngIf="imgG6">
+            <img src="assets\images\parte_strutturale\G6.jpg" alt="Codice G6">
+          </div>
+          <div *ngIf="imgG7">
+            <img src="assets\images\parte_strutturale\G7.jpg" alt="Codice G7">
+          </div>
+          <div *ngIf="imgG8">
+            <img src="assets\images\parte_strutturale\G8.jpg" alt="Codice G8">
+          </div>
+          <div *ngIf="imgG9">
+            <img src="assets\images\parte_strutturale\G9.jpg" alt="Codice G9">
+          </div>
+          <div *ngIf="imgH1">
+            <img src="assets\images\parte_strutturale\H1.jpg" alt="Codice H1">
+          </div>
+          <div *ngIf="imgH2">
+            <img src="assets\images\parte_strutturale\H2.jpg" alt="Codice H2">
+          </div>
+          <div *ngIf="imgI1">
+            <img src="assets\images\parte_strutturale\I1.jpg" alt="Codice I1">
+          </div>
+          <div *ngIf="imgTab01">
+            <img src="assets\images\parte_strutturale\Tab01.png" alt="Codice Tab01">
+          </div>
+          <div *ngIf="imgTab02">
+            <img src="assets\images\parte_strutturale\Tab02.png" alt="Codice Tab02">
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- MODAL MECCANISMI -->
+    <div class="modal fade" id="modal-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+  
+            <!-- X -->
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+  
+          <!-- IMMAGINI -->
+          <div *ngIf="imgM1">
+            <img src="assets\images\parte_strutturale\M1.png" alt="Meccanismo M1">
+          </div>
+          <div *ngIf="imgM2">
+            <img src="assets\images\parte_strutturale\M2.png" alt="Meccanismo M2">
+          </div>
+          <div *ngIf="imgM3">
+            <img src="assets\images\parte_strutturale\M3.png" alt="Meccanismo M3">
+          </div>
+          <div *ngIf="imgM4">
+            <img src="assets\images\parte_strutturale\M4.png" alt="Meccanismo M4">
+          </div>
+          <div *ngIf="imgM5">
+            <img src="assets\images\parte_strutturale\M5.png" alt="Meccanismo M5">
+          </div>
+          <div *ngIf="imgM6">
+            <img src="assets\images\parte_strutturale\M6.png" alt="Meccanismo M6">
+          </div>
+          <div *ngIf="imgM7">
+            <img src="assets\images\parte_strutturale\M7.png" alt="Meccanismo M7">
+          </div>
+          <div *ngIf="imgM8">
+            <img src="assets\images\parte_strutturale\M8.png" alt="Meccanismo M8">
+          </div>
+          <div *ngIf="imgM9">
+            <img src="assets\images\parte_strutturale\M9.png" alt="Meccanismo M9">
+          </div>
+          <div *ngIf="imgM10">
+            <img src="assets\images\parte_strutturale\M10.png" alt="Meccanismo M10">
+          </div>
+          <div *ngIf="imgM11">
+            <img src="assets\images\parte_strutturale\M11.png" alt="Meccanismo M11">
+          </div>
+          <div *ngIf="imgM12">
+            <img src="assets\images\parte_strutturale\M12.png" alt="Meccanismo M12">
+          </div>
+          <div *ngIf="imgM13">
+            <img src="assets\images\parte_strutturale\M13.png" alt="Meccanismo M13">
+          </div>
+          <div *ngIf="imgM14">
+            <img src="assets\images\parte_strutturale\M14.png" alt="Meccanismo M14">
+          </div>
+          <div *ngIf="imgM15">
+            <img src="assets\images\parte_strutturale\M15.png" alt="Meccanismo M15">
+          </div>
+          <div *ngIf="imgM16">
+            <img src="assets\images\parte_strutturale\M16.png" alt="Meccanismo M16">
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- MODAL TAB.01 -->
+    <div class="modal fade" id="modal-3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+  
+            <!-- X -->
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+  
+          <!-- IMMAGINI -->
+          <div *ngIf="imgTab01">
+            <img src="assets\images\parte_strutturale\Tab01.png" alt="Tab01">
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- MODAL TAB.02 -->
+    <div class="modal fade" id="modal-4" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+  
+            <!-- X -->
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+  
+          <!-- IMMAGINI -->
+          <div *ngIf="imgTab02">
+            <img src="assets\images\parte_strutturale\Tab02.png" alt="Tab02">
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>

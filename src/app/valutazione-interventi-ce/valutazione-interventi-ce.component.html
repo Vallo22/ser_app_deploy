@@ -1,0 +1,121 @@
+<div class="container">
+
+  <!-- PROGRESS BAR -->
+  <div class="progress" style="margin-top: 30px">
+    <div class="progress-bar-1" role="progressbar" style="width: 33.3%" aria-valuenow="33.3" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="progress-bar-2" role="progressbar" style="width: 33.3%" aria-valuenow="33.3" aria-valuemin="0" aria-valuemax="100">STEP 2</div>
+  </div>
+
+<div class="titolo" style="text-align: center; margin-top: 30px; font-size: 30px;">
+    <p><strong>Valutazione multicriterio delle alternative di intervento</strong>
+  </div>
+  
+  <div class="card my-5">
+    <div class="card-body">
+  
+      <div class=row>
+        <div class="col-sm">
+          <summary><strong>Legenda scelta interventi</strong></summary>
+          <div class='my-legend'>
+            <div class='legend-scale'>
+              <ul class='legend-labels'>
+                <li><span style='background:#fad677;'></span>Intervento meno conveniente</li>
+                <li><span style='background:#5a8982;'></span>Intervento più conveniente</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm">
+          <summary><strong>Finitura delle superfici</strong></summary>
+          <div class='my-legend-CV' *ngFor="let interventi of variabileIntervento;">
+            <div class='legend-scale'>
+              <ul class='legend-labels'
+                *ngIf="interventi.intervento.codice == 'b3' || interventi.intervento.codice == 'b8'">
+                <select [(ngModel)]="tipo_superficie" (change)="calcolaTotale()" (change)="massimoNumero()">
+                  <option selected disabled [value]="0">Seleziona</option>
+                  <option [value]="1">Tutte le superfici intonacate</option>
+                  <option [value]="2">Esterno a vista, interno intonacato</option>
+                  <option [value]="3">Interno a vista, esterno intonacato</option>
+                </select>
+              </ul>
+              <ul class='legend-labels' *ngIf="interventi.intervento.codice == 'd1' ||
+               interventi.intervento.codice == 'd3' ||
+               interventi.intervento.codice == 'd4' ||
+               interventi.intervento.codice == 'a2' ||
+               interventi.intervento.codice == 'a5'">
+                <select [(ngModel)]="tipo_superficie" (change)="calcolaTotale()" (change)="massimoNumero()">
+                  <option selected disabled [value]="0">Seleziona</option>
+                  <option [value]="1">Intradosso a vista</option>
+                  <option [value]="2">Intradosso non a vista</option>
+                </select>
+              </ul>
+              <ul class='legend-labels' *ngIf="interventi.intervento.codice == 'c1' ||
+               interventi.intervento.codice == 'c7' ||
+               interventi.intervento.codice == 'c8'">
+                <select [(ngModel)]="tipo_superficie" (change)="calcolaTotale()" (change)="massimoNumero()">
+                  <option selected disabled [value]="0">Seleziona</option>
+                  <option [value]="1">Compatibilità visiva</option>
+                </select>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm"></div>
+      </div>
+  
+  
+      <hr>
+  
+      <div class="overflow-auto">
+        <table class="table table-hover table-bordered table-striped">
+          <caption></caption>
+          <thead style="background:#ce5e59; color: white;">
+            <tr>
+              <th style="text-align: center; vertical-align: middle;" rowspan="2" colspan="1" scope="colgroup">Codice</th>
+              <th style="text-align: center;" rowspan="2" scope="colgroup">Modicità di costo</th>
+              <th style="text-align: center; vertical-align: middle;" rowspan="2" scope="colgroup">Efficacia</th>
+              <th style="text-align: center;" rowspan="2" scope="colgroup">Compatibilità visiva</th>
+              <th style="text-align: center; vertical-align: middle;" rowspan="2" scope="colgroup">Reversibilità</th>
+              <th style="text-align: center;" rowspan="2" scope="colgroup">Semplicità di cantiere</th>
+              <th style="text-align: center;" rowspan="2" scope="colgroup">Esiguità di ingombro</th>
+              <th style="text-align: center; vertical-align: middle;" rowspan="2" scope="colgroup">Totale</th>
+              <th style="text-align: center;" rowspan="2" scope="colgroup">Intervento selezionato</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let interventi of variabileIntervento; index as i">
+              <ng-container *ngFor="let variante of interventi.varianti; index as j">
+                <tr *ngIf="interventi.totale[j] != 0">
+                <td>{{interventi.intervento.codice}}</td>
+                <td>{{interventi.modicitaDiCosto[j]}}</td>
+                <td>{{interventi.efficacia[j]}}</td>
+                <td *ngIf="tipo_superficie == 0">Seleziona</td>
+                <td *ngIf="tipo_superficie == 1">{{interventi.supIntonacate[j]}}</td>
+                <td *ngIf="tipo_superficie == 2">{{interventi.supEvIi[j]}}</td>
+                <td *ngIf="tipo_superficie == 3">{{interventi.supIvEi[j]}}</td>
+                <td>{{interventi.reversibilita[j]}}</td>
+                <td>{{interventi.semplicitaDiCantiere[j]}}</td>
+                <td>{{interventi.esiguitaDiIngombro[j]}}</td>
+                <td [ngStyle]="{'background-color':interventi.maxVariante === j ? '#5a8982' : interventi.minVariante === j ? '#fad677' : 'white' }">
+                  {{interventi.totale[j] | number: '1.2-2'}}</td>
+                <td>
+                  <div class="custom-control custom-checkbox" *ngIf="tipo_superficie == 1 || tipo_superficie == 2 || tipo_superficie == 3">
+                    <input type="checkbox" class="form-check-input" [disabled]="arraySelezionati.length > 0"
+                      (click)="premiBottone(interventi)">
+                  </div>
+                </td>
+                </tr>
+              </ng-container>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="text-align: center;" *ngIf="mostraBottone == true">
+        <button class="btn btn-default" (click)="trasferisciIntervento()">
+          Avanti &raquo;
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

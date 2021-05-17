@@ -1,0 +1,64 @@
+.fa{
+    margin: 20px 0px;
+}
+
+.card-header{
+    height: 50px;
+}
+
+img{
+    max-width: none;
+    width: 797px;
+}
+
+
+@media all and (max-width: 500px){
+
+img{
+    max-width: 100%;
+    width: 797px;
+}
+}
+
+.pulsante{
+    text-align: center;
+}
+
+.btn-default, .btn-default:active, .btn-default:visited {
+    background-color: #ce5e59 !important;
+    color: white;
+  }
+  
+  .btn-default:hover {
+    background-color: #853a36 !important;
+    color: white;
+  }
+  
+  .btn-outline-default, .btn-outline-default:active, .btn-outline-default:visited {
+    background-color: white !important;
+    color: #ce5e59;
+    border-color: #ce5e59;
+  }
+  
+  .btn-outline-default:hover {
+    background-color: #ce5e59 !important;
+    color: white;
+  }
+
+  .progress-bar-1 {
+    text-align: center;
+    background-color: #893f3b;
+    color: white
+  }
+  
+  .progress-bar-2 {
+    text-align: center;
+    background-color: #b7544f;
+    color: white
+  }
+  
+  .progress-bar-3 {
+    text-align: center;
+    background-color: #d3706b;
+    color: white
+  }

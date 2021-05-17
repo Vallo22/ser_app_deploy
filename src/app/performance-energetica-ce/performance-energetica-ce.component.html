@@ -1,0 +1,94 @@
+<div class="container">
+
+  <!-- PROGRESS BAR -->
+  <div class="progress" style="margin-top: 30px">
+    <div class="progress-bar-1" role="progressbar" style="width: 33.3%" aria-valuenow="33.3" aria-valuemin="0" aria-valuemax="100">STEP 1</div>
+  </div>
+
+    <div class="titolo" style="text-align: center;margin-top: 30px; font-size: 30px;">
+      <p><strong>Valutazione della performance energetica</strong></p>
+    </div>
+  
+    <div class="card my-5">
+
+      <div class="card-body">
+        <div style="text-align: center;">     
+        <label class="form-check-inline">
+          <input class="form-check-input" type="radio" name="scelta" [(ngModel)]="scelta"
+              [value]="true" (click)="inserimentoTrue()">
+              Edificio con climatizzazione estiva
+        </label>
+        <label class="form-check-inline">
+          <input class="form-check-input" type="radio" name="scelta" [(ngModel)]="scelta"
+              [value]="false" (click)="inserimentoFalse()">
+              Edificio senza climatizzazione estiva
+         </label>
+        </div>
+         <hr>
+
+          <div *ngIf="scelta === true">
+            <div name="selt" *ngFor="let ind of indicatore; index as j" style="font-size: 17px;">
+              <strong>• {{ ind.indicatore }}</strong>
+              <select name="sel{{j}}" [(ngModel)]="selezione[j]" style="margin-top: 10px;" class="form-control">
+                <ng-container *ngFor="let classe of classeIndicatore; index as i">
+                  <option *ngIf="classe.indicatore.id === ind.id" [value]="classe.id">
+                    {{ classe.descrizione }}
+                  </option>            
+                </ng-container>
+              </select>
+              <label></label>
+            </div>
+          </div>
+
+          <div *ngIf="scelta === false">
+            <div name="selt1" *ngFor="let ind1 of indicatoreNon; index as a" style="font-size: 17px;">
+              <strong>• {{ ind1.indicatore }}</strong>
+              <select name="sel1{{a}}" [(ngModel)]="selezione1[a]" style="margin-top: 10px;" class="form-control">
+                <ng-container *ngFor="let classe of classeIndicatoreNon; index as b">
+                  <option *ngIf="classe.indicatore.id === ind1.id" [value]="classe.id">
+                    {{ classe.descrizione }}
+                  </option>            
+                </ng-container>
+              </select>
+              <label></label>
+            </div>
+          </div>
+  
+      </div>
+
+      <div class="card-footer" style="text-align: center;">
+        <button style="margin-right: 30px;" class="btn btn-defaultn display-4" routerLink="/home" 
+          routerLinkActive="active">&laquo; Indietro</button>
+        <button type="submit" *ngIf="scelta === true" (click)="outputTotale()" style="margin-top: 5px"
+          class="btn btn-outline-default">Ottieni risultato</button>
+        <button type="submit" *ngIf="scelta === false" (click)="outputTotaleNon()" style="margin-top: 5px"
+          class="btn btn-outline-default">Ottieni risultato</button>
+          <hr>
+          <div style="justify-content: center;" *ngIf="msg1">         
+            <p style="font-size: 20px;">Classe Energetica: <strong>{{classeEnergetica}}</strong></p>
+            <div style="margin-top: 10px;" *ngIf="classeEnA">
+              <img class="imgClasse" src="assets\images\parte_energetica\ClasseA.png" alt="Generic placeholder image">
+            </div>
+            <div style="margin-top: 20px;" *ngIf="classeEnB">
+              <img class="imgClasse" src="assets\images\parte_energetica\ClasseB.png" alt="Generic placeholder image">
+            </div>
+            <div style="margin-top: 20px;" *ngIf="classeEnC">
+              <img class="imgClasse" src="assets\images\parte_energetica\ClasseC.png" alt="Generic placeholder image">
+            </div>
+            <div style="margin-top: 20px;" *ngIf="classeEnD">
+              <img class="imgClasse" src="assets\images\parte_energetica\ClasseD.png" alt="Generic placeholder image">
+            </div>
+            <div style="margin-top: 20px;" *ngIf="classeEnEF">
+              <img class="imgClasse" src="assets\images\parte_energetica\ClasseE-F.png" alt="Generic placeholder image">
+            </div>
+            <div style="margin-top: 20px;" *ngIf="classeEnG">
+              <img class="imgClasse" src="assets\images\parte_energetica\ClasseG.png" alt="Generic placeholder image">
+            </div>
+            <hr>
+            <button style="margin-top: 5px;" class="btn btn-default" (click)=prosegui()>Avanti &raquo;</button>
+          </div>
+      </div>
+      
+    </div>
+  
+  </div>

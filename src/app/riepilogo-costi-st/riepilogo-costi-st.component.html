@@ -1,0 +1,195 @@
+<div class="container">
+
+    <!-- PROGRESS BAR -->
+    <div class="progress" style="margin-top: 30px" *ngIf="visualizzaRighe == 1">
+        <div class="progress-bar-1" role="progressbar" style="width: 33.3%" aria-valuenow="33.3" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar-2" role="progressbar" style="width: 33.3%" aria-valuenow="33.3" aria-valuemin="0" aria-valuemax="100">STEP 2</div>
+      </div>
+
+    <!-- PROGRESS BAR -->
+  <div class="progress" style="margin-top: 30px" *ngIf="visualizzaRighe != 1">
+    <div class="progress-bar-1" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="progress-bar-2" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="progress-bar-3" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">STEP 3</div>
+  </div>
+
+    <div class="titolo" style="text-align: center;margin-top: 30px; font-size: 30px;">
+        <p><strong>Riepilogo degli interventi e calcolo dei costi</strong></p>
+    </div>
+
+    <!-- ALERT -->
+    <div class="alert alert-danger" role="alert" style="margin-top: 30px;" *ngIf="alert == true">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        Per proseguire all'integrazione con gli interventi energetici, è necessario calcolare il costo 
+        totale d'intevento!
+    </div>
+
+    <div class="overflow-auto">
+        <div class="tabella">
+            <table class="table table-hover table-bordered table-striped" style="display: contents;">
+                <caption></caption>
+                <thead style="background:#ce5e59; color: white;">
+                    <tr>
+                        <th scope="colgroup" style="vertical-align: middle;">Intervento:</th>
+                        <th scope="colgroup" style="vertical-align: middle;">Tipo di superficie:</th>
+                        <th scope="colgroup">Prezzo unità/quantità:</th>
+                        <th scope="colgroup" style="vertical-align: middle;">Dimensione:</th>
+                        <th scope="colgroup">Costo parziale:</th>
+                        <th scope="colgroup" style="vertical-align: middle;">Costi aggiuntivi per le attrezzature della sicurezza:</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                        <ng-container *ngFor="let elemento of interventi; index as j">
+                            <tr>
+                                <td style="vertical-align: middle;">{{elemento.intervento.codice}}</td>
+
+                                <td style="vertical-align: middle;">
+                                    <select [(ngModel)]="elemento.tipo_superficie">
+                                        <option selected disabled value="0">Seleziona</option>
+                                        <!-- CASI PARTICOLARI -->
+                                        <option value="4" *ngIf="elemento.intervento.codice == 'A1'">Qualsiasi (catene a vista)</option>
+                                        <option value="5" *ngIf="elemento.intervento.codice == 'A1'">Qualsiasi (catene sottotraccia)</option>
+                                        <option value="6" *ngIf="elemento.intervento.codice == 'G6'">- (azione da estradosso)</option>
+                                        <option value="7" *ngIf="elemento.intervento.codice == 'G6'">Superfici a vista (azione da intradosso)</option>
+                                        <option value="8" *ngIf="elemento.intervento.codice == 'G6'">Superficie intonacata (azione da intradosso)</option>
+                                        <!-- FINE CASI PARTICOLARI -->
+                                        <option value="1" [attr.disabled]="elemento.prezzo === 0 ? 'disabled' : null">Superfici a vista</option>                           
+                                        <option value="2" [attr.disabled]="elemento.prezzoSupInt === 0 ? 'disabled' : null">Superficie intonacata</option>                               
+                                        <option value="3" [attr.disabled]="elemento.prezzoEntrInt === 0 ? 'disabled' : null">Entrambe le superfici intonacate</option>
+                                      </select>
+                                </td>
+
+                                <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 0">Seleziona</td>
+                                <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 1">{{elemento.prezzo}}€/{{elemento.unitaMisura}}</td>
+                                <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 2">{{elemento.prezzoSupInt}}€/{{elemento.unitaMisura}}</td>
+                                <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 3">{{elemento.prezzoEntrInt}}€/{{elemento.unitaMisura}}</td>
+                                <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 4">33.83€/{{elemento.unitaMisura}}</td>
+                                <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 5">54.96€/{{elemento.unitaMisura}}</td>
+                                <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 6">728.07€/{{elemento.unitaMisura}}</td>
+                                <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 7">180€/{{elemento.unitaMisura}}</td>
+                                <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 8">234.93€/{{elemento.unitaMisura}}</td>
+                                
+                                <td style="vertical-align: middle;">
+                                    <input type="number" [value]="elemento.valoreCifra"
+                                        (input)="elemento.valoreCifra = $event.target.value" style="margin-left: 20px;">
+                                        {{elemento.unitaMisura}}
+                                </td>
+
+                                <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 0">Seleziona</td>
+                                <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 1">{{elemento.prezzo * elemento.valoreCifra | number: '1.2-2':'fr'}}€</td>
+                                <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 2">{{elemento.prezzoSupInt * elemento.valoreCifra | number: '1.2-2':'fr'}}€</td>
+                                <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 3">{{elemento.prezzoEntrInt * elemento.valoreCifra | number: '1.2-2':'fr'}}€</td>
+                                <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 4">{{33.83 * elemento.valoreCifra | number: '1.2-2':'fr'}}€</td>
+                                <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 5">{{54.96 * elemento.valoreCifra | number: '1.2-2':'fr'}}€</td>
+                                <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 6">{{728.07 * elemento.valoreCifra | number: '1.2-2':'fr'}}€</td>
+                                <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 7">{{180 * elemento.valoreCifra | number: '1.2-2':'fr'}}€</td>
+                                <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 8">{{234.93 * elemento.valoreCifra | number: '1.2-2':'fr'}}€</td>
+
+                                <td style="vertical-align: middle;">{{elemento.intervento.descrizioneAttrezzatura}}<br>
+                                    <p style="font-size: 10px;">{{elemento.intervento.dettaglio}}</p>  
+                                </td>
+
+                            </tr>
+                            <div *ngIf="elemento.intervento.id == 66" style="color: #ce5e59;">Per l'intervento I1 la determinazione dei costi richiede la conoscenza degli specifici costi di progetto</div>
+                        </ng-container>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="pulsante1">
+        <button class="btn btn-outline-default" style="align-content: center;" (click)="calcolaInvestimentoTotale()">
+            Calcola il costo totale di investimento
+        </button>
+    </div>
+
+    <hr>
+
+    <table class="table table-bordered" style="margin-top: 30px;">
+        <caption></caption>
+        <thead style="background-color: #ce5e59; color: white;">
+            <th scope="colgroup" colspan="2" style="text-align: center;">CALCOLO DEI COSTI</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Costo di investimento totale:</td>
+                <td style="background-color: #fad677;">
+                    {{totale | number: '1.2-2':'fr'}}€
+                </td>
+            </tr>
+            <tr *ngIf="visualizzaRighe != 1">
+                <td>Incidenza del pacchetto di interventi sul punteggio di vulnerabilità:</td>
+                <td>{{sommaPacchettoInterventi}}</td>
+            </tr>
+            <tr *ngIf="visualizzaRighe != 1">
+                <td>Cu(S) Indice di costo per decremento unitario percentuale di vulnerabilità:</td>
+                <td>{{risultatoDivisione | number: '1.0-2'}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+    
+    <table class="table table-bordered" style="margin-top: 30px;" *ngIf="visualizzaRighe != 1">
+        <caption></caption>
+        <thead style="background-color: #ce5e59; color: white;">
+            <th scope="colgroup" colspan="2" style="text-align: center;">IPOTESI DI DANNO E PREVISIONE DEI COSTI DI RIPARAZIONE</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Superficie totale:</td>
+                <td>
+                    <input type="number" [(ngModel)]="inputUtente">
+                    mq
+                </td>
+            </tr>
+            <tr>
+                <td>Livello di danno ipotizzato:</td>
+                <td>
+                    <select *ngIf="risk == 'A+' || risk == 'A' || risk == 'B'" [(ngModel)]="selezione" (change)="onChangeCostoAAB($event.target.value)">
+                        <option selected disabled>Seleziona</option>
+                        <option *ngFor="let danno of costoAAB" [value]="danno.costo">
+                            {{danno.nome}}: {{danno.costo}}€/mq
+                        </option>
+                    </select>
+                    <select *ngIf="risk == 'F' || risk == 'G'" [(ngModel)]="selezione" (change)="onChangeCostoFG($event.target.value)">
+                        <option selected disabled>Seleziona</option>
+                        <option *ngFor="let danno of costoFG" [value]="danno.costo">
+                            {{danno.nome}}: {{danno.costo}}€/mq
+                        </option>
+                    </select>
+                    <select *ngIf="risk == 'C'" [(ngModel)]="selezione" (change)="onChangeCostoC($event.target.value)">
+                        <option selected disabled>Seleziona</option>
+                        <option *ngFor="let danno of costoC" [value]="danno.costo">
+                            {{danno.nome}}: {{danno.costo}}€/mq
+                        </option>
+                    </select>
+                    <select *ngIf="risk == 'D' || risk == 'E'" [(ngModel)]="selezione" (change)="onChangeCostoDE($event.target.value)">
+                        <option selected disabled>Seleziona</option>
+                        <option *ngFor="let danno of costoDE" [value]="danno.costo">
+                            {{danno.nome}}: {{danno.costo}}€/mq
+                        </option>
+                    </select>
+                    <button style="margin-left: 5px;"class="btn btn-outline-default" (click)="mostraTotaleRiparazione()">
+                        Calcola
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>Costo di riparazione:</td>
+                <td style="background-color: #fad677;">
+                    {{costoDiRiparazione | number: '1.2-2':'fr'}}€
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="text-align: center;">
+        <button class="btn btn-outlinev-default" (click)="trasferisciInterventi()">Vai all'integrazione con<br> le soluzioni energetiche &raquo;</button>
+    </div>
+
+    <label></label>
+    <br><br>
+</div>

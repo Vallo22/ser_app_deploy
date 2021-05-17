@@ -1,0 +1,56 @@
+.crGood{
+    color: #5a8982;
+}
+
+.crBad{
+    color: #ce5e59;
+}
+
+.pulsante{
+    text-align: center;
+}
+
+.btn-default, .btn-default:active, .btn-default:visited {
+  background-color: #ce5e59 !important;
+  color: white;
+}
+
+.btn-default:hover {
+  background-color: #853a36 !important;
+  color: white;
+}
+
+.btn-outline-default, .btn-outline-default:active, .btn-outline-default:visited {
+  background-color: white !important;
+  color: #ce5e59;
+  border-color: #ce5e59;
+}
+
+.btn-outline-default:hover {
+  background-color: #ce5e59 !important;
+  color: white;
+}
+
+.progress-bar-1 {
+  text-align: center;
+  background-color: #5c2a28;
+  color: white
+}
+
+.progress-bar-2 {
+  text-align: center;
+  background-color: #893f3b;
+  color: white
+}
+
+.progress-bar-3 {
+  text-align: center;
+  background-color: #b7544f;
+  color: white
+}
+
+.progress-bar-4 {
+  text-align: center;
+  background-color: #d3706b;
+  color: white
+}

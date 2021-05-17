@@ -1,0 +1,64 @@
+.btn-outline-default, .btn-outline-default:active, .btn-outline-default:visited {
+    background-color: white !important;
+    color: #ce5e59;
+    border-color: #ce5e59;
+  }
+  
+  .btn-outline-default:hover {
+    background-color: #ce5e59 !important;
+    color: white;
+  }
+
+  .btn-outline-defaults, .btn-outline-defaults:active, .btn-outline-defaults:visited {
+    background-color: white !important;
+    color: #ce5e59;
+    border-color: #ce5e59;
+    height:25px;
+    width:25px;
+    font-size: 80%;
+    text-align: center;
+  }
+  
+  .btn-outline-defaults:hover {
+    background-color: #ce5e59 !important;
+    color: white;
+    height:25px;
+    width:25px;
+    font-size: 80%;
+    text-align: center;
+  }
+
+  .pulsante {
+    text-align: center;
+  }
+
+  .progress-bar-1 {
+    text-align: center;
+    background-color: #5c2a28;
+    color: white
+  }
+  
+  .progress-bar-2 {
+    text-align: center;
+    background-color: #893f3b;
+    color: white
+  }
+  
+  .progress-bar-3 {
+    text-align: center;
+    background-color: #b7544f;
+    color: white
+  }
+  
+  .progress-bar-4 {
+    text-align: center;
+    background-color: #d3706b;
+    color: white
+  }
+
+  .tabella{
+    margin-right: auto;
+    margin-left: auto;
+    width: fit-content;
+    text-align: center;
+}

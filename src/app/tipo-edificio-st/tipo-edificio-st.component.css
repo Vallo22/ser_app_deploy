@@ -1,0 +1,26 @@
+.scelta .col-lg-4 {
+    text-align: center;
+}
+
+  img {
+    vertical-align: middle;
+    border-style: none;
+}
+
+  @media all and (max-width: 500px){
+
+  img {
+    vertical-align: middle;
+    border-style: none;
+  }
+  
+  }
+  .btn-default, .btn-default:active, .btn-default:visited {
+    background-color: #ce5e59 !important;
+    color: white;
+  }
+  
+  .btn-default:hover {
+    background-color: #853a36 !important;
+    color: white;
+  }
