@@ -14,7 +14,7 @@ export class PerformanceEnergeticaCeService {
   url: string
 
   constructor(private http: HttpClient) {
-    this.url = 'http://localhost:8080/';
+    this.url = 'http://193.205.90.120:8080/';
    }
 
    public getIndicatore(): Observable<IndicatoreCe[]>{
