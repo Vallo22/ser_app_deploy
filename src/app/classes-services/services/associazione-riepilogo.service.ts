@@ -12,7 +12,7 @@ export class AssociazioneRiepilogoService {
   url: string
 
   constructor(private http: HttpClient) {
-    this.url = 'http://172.16.0.7:8080/';
+    this.url = 'https://172.16.0.7:8080/';
   }
 
   public getAssociazioneRiepilogo(): Observable<AssociazioneRiepilogo[]> {
