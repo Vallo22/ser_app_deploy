@@ -15,7 +15,7 @@ export class ElementiStrutturaStService {
   test: string = ""
 
   constructor(private http: HttpClient) {
-    this.url = 'http://172.16.0.7:8080/';
+    this.url = 'http://94.177.192.141:8080/';
   }
 
   public getStruttura():Observable<StrutturaSt[]> {
