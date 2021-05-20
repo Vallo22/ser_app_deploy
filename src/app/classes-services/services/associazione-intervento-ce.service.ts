@@ -11,7 +11,7 @@ export class AssociazioneInterventoCeService {
   url: string
 
   constructor(private http: HttpClient) {
-    this.url = 'http://94.177.192.141:8080/';
+    this.url = 'https://elisa.unicam.it:8080/';
   }
 
   public getAssociazioneIntervento(): Observable<AssociazioneInterventoCe[]> {

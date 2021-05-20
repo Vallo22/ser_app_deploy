@@ -19,7 +19,7 @@ export class EdificioStService {
   edificioUrl: string
 
   constructor(private http: HttpClient) {
-    this.edificioUrl = 'http://94.177.192.141:8080/'
+    this.edificioUrl = 'https://elisa.unicam.it:8080/'
    }
 
    public getTipoEdificio():Observable<TipoEdificioSt[]>{
