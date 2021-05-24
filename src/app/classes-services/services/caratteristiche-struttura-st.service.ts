@@ -11,7 +11,7 @@ export class CaratteristicheStrutturaStService {
   url: string
 
   constructor(private http: HttpClient) {
-    this.url = 'https://elisa.unicam.it:8080/';
+    this.url = 'https://ser.unicam.it/';
   }
 
   public getStrutturaDalleCaratteristiche(): Observable<CaratteristicheStrutturaSt[]> {
