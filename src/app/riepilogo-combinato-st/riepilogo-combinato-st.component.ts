@@ -408,7 +408,7 @@ export class RiepilogoCombinatoStComponent implements OnInit {
             widths: ['*', 100],
             body: [
               [{text:'Costo di investimento totale con integrazioni', bold:'true'}, this.totaleIntegrati.toFixed(2) + '€'],
-              [{text:'Risparmio rispetto ad azioni disgiunte', bold:'true'}, this.sommaRisparmi.toFixed(2) + '€']
+              [{text:'Risparmio rispetto ad azioni disgiunte', bold:'true'}, this.risparmioPdf.toFixed(2) + '€']
             ]
           }
         }
