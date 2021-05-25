@@ -74,7 +74,7 @@ export class RiepilogoCombinatoStComponent implements OnInit {
   packNomeInterventoIntegrato = []
   packRisparmio = []
   sommaRisparmi: number
-
+  risparmioPdf: number
 
   ngOnInit() {
     this.interventi = window.history.state.interventi
@@ -217,6 +217,11 @@ export class RiepilogoCombinatoStComponent implements OnInit {
   }
 
   generatePdf(){
+    if(this.sommaRisparmi != 0) {
+      this.risparmioPdf = this.totaleIntegrati - this.sommaRisparmi
+    } else {
+      this.risparmioPdf = 0
+    }
     const documentDefinition = this.getDocumentDefinition()
     pdfMake.createPdf(documentDefinition).open()
   }

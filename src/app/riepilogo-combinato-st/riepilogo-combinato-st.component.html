@@ -294,8 +294,11 @@
                             <caption></caption>
                             <tbody>
                                 <td>
-                                    <div *ngFor="let a of packNomeInterventoIntegrato">{{a}}</div>
+                                    <div *ngFor="let a of packNomeInterventoIntegrato">{{a}} + </div>
                                 </td> 
+                                <td>
+                                    <div *ngFor="let b of packInterventiEnergetici">{{b}}</div>
+                                </td>
                                 <td style="text-align: left;">
                                     <div *ngFor="let costi of packCostiIntegrati">{{costi | number: '1.2-2':'fr'}}€</div>
                                 </td>
