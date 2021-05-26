@@ -74,7 +74,6 @@ export class RiepilogoCombinatoStComponent implements OnInit {
   packNomeInterventoIntegrato = []
   packRisparmio = []
   sommaRisparmi: number
-  risparmioPdf: number
 
   ngOnInit() {
     this.interventi = window.history.state.interventi
@@ -217,11 +216,6 @@ export class RiepilogoCombinatoStComponent implements OnInit {
   }
 
   generatePdf(){
-    if(this.sommaRisparmi != 0) {
-      this.risparmioPdf = this.totaleIntegrati - this.sommaRisparmi
-    } else {
-      this.risparmioPdf = 0
-    }
     const documentDefinition = this.getDocumentDefinition()
     pdfMake.createPdf(documentDefinition).open()
   }
@@ -408,7 +402,7 @@ export class RiepilogoCombinatoStComponent implements OnInit {
             widths: ['*', 100],
             body: [
               [{text:'Costo di investimento totale con integrazioni', bold:'true'}, this.totaleIntegrati.toFixed(2) + '€'],
-              [{text:'Risparmio rispetto ad azioni disgiunte', bold:'true'}, this.risparmioPdf.toFixed(2) + '€']
+              [{text:'Risparmio rispetto ad azioni disgiunte', bold:'true'}, this.sommaRisparmi.toFixed(2) + '€']
             ]
           }
         }
