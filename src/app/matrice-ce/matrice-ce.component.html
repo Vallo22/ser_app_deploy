@@ -12,8 +12,25 @@
     <div class="sottotitolo" style="text-align: center; font-size: 20px;">
         <strong>Comparazione a coppie tra i criteri di valutazione</strong>
     </div>
+    
+    <!-- ALERT -->
+    <div class="alert alert-danger" role="alert" style="margin-top: 30px;" *ngIf="showAlert == true">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        Poiché l'indicazione di intervento è univoca non è necessario ricorrere
+        all'analisi multicriterio per la selezione degli interventi.
+        <hr>
+        <div class="pulsante">
+            <button class="btn btn-default"
+                (click)="proseguiSenzaMatrice()">
+                Avanti &raquo;
+            </button>
+        </div>
+    </div>
 
     <!-- HEADER % -->
+    <div *ngIf="showMatrice == true">
     <div class="card my-5">
         <div class="card-header" style="text-align: center;">
             <div style="font-size: 20px;"><strong>Criteri</strong></div>
@@ -752,6 +769,7 @@
                 </details>
             </div>
         </div>
+    </div>
     </div>
     <label></label>
     <br><br>

@@ -35,11 +35,14 @@
 
                         <td style="vertical-align: middle;">
                             <select [(ngModel)]="elemento.tipo_superficie">
+                                <option selected disabled [value]="0">Seleziona</option>
                                 <!-- CASI PARTICOLARI -->
                                 <option [value]="3" *ngIf="elemento.intervento.codice == 'd2'">Qualsiasi (pannelli rigidi)</option>
                                 <option [value]="4" *ngIf="elemento.intervento.codice == 'd2'">Qualsiasi (intonaco termoisolante)</option>
+                                <option [value]="5" *ngIf="elemento.intervento.codice == 'd4'">Qualsiasi (pannelli rigidi)</option>
+                                <option [value]="6" *ngIf="elemento.intervento.codice == 'd4'">Qualsiasi (intonaco termoisolante)</option>
+
                                 <!-- FINE CASI PARTICOLARI -->
-                                <option selected disabled [value]="0">Seleziona</option>
                                 <option [value]="1" [attr.disabled]="elemento.prezzoVista === 0 ? 'disabled' : null">Superfici a vista</option>
                                 <option [value]="2" [attr.disabled]="elemento.prezzoInton === 0 ? 'disabled' : null">Superficie intonacata</option>                  
                             </select>
@@ -50,6 +53,8 @@
                         <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 2">{{elemento.prezzoInton}}€/{{elemento.unitaMisura}}</td>
                         <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 3">64.22€/{{elemento.unitaMisura}}</td>
                         <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 4">56€/{{elemento.unitaMisura}}</td>
+                        <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 5">64.22€/{{elemento.unitaMisura}}</td>
+                        <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 6">56€/{{elemento.unitaMisura}}</td>
                         
                         <td style="vertical-align: middle;">
                             <input type="number" [value]="elemento.valoreCifra"
@@ -62,6 +67,8 @@
                         <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 2">{{elemento.prezzoInton * elemento.valoreCifra | number: '1.2-2':'fr'}}€</td>
                         <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 3">{{64.22 * elemento.valoreCifra | number: '1.2-2':'fr'}}€</td>
                         <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 4">{{56 * elemento.valoreCifra | number: '1.2-2':'fr'}}€</td>
+                        <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 5">{{64.22 * elemento.valoreCifra | number: '1.2-2':'fr'}}€</td>
+                        <td style="vertical-align: middle;" *ngIf="elemento.tipo_superficie == 6">{{56 * elemento.valoreCifra | number: '1.2-2':'fr'}}€</td>
                         
                         <td>{{elemento.intervento.descrizioneAttrezzatura}}</td>
                     </tbody>

@@ -10,7 +10,7 @@
     <p><strong>Valutazione multicriterio delle alternative di intervento</strong>
   </div>
   
-  <div class="card my-5">
+  <div class="card my-5" *ngIf="pass == true"> 
     <div class="card-body">
   
       <div class=row>
@@ -118,4 +118,45 @@
       </div>
     </div>
   </div>
+
+  <div *ngIf="pass2 == true">
+    <div class="card my-5">
+      <div class="card-body">
+    <div class="overflow-auto">
+      <table class="table table-hover table-bordered table-striped">
+        <caption></caption>
+        <thead style="background:#ce5e59; color: white;">
+          <tr>
+            <th style="text-align: center; vertical-align: middle;" rowspan="2" colspan="1" scope="colgroup">Codice</th>
+            <th style="text-align: center;" rowspan="2" scope="colgroup">Intervento selezionato</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let interventi of variabileIntervento; index as i">
+            <tr *ngFor="let variante of interventi.varianti; index as j">
+              <ng-container *ngIf="interventi.passaggio == 1">
+              <td>{{interventi.intervento.codice}}</td>
+              <td>
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" [disabled]="arraySelezionati.length > 0"
+                    class="form-check-input" (click)="premiBottoneDue(interventi)">
+                </div>
+              </td>
+            </ng-container>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+
+      <div style="text-align: center;" *ngIf="mostraBottone == true">
+        <button class="btn btn-default" (click)="trasferisciIntervento()">
+          Avanti &raquo;
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+  </div>
+
 </div>

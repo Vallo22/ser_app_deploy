@@ -77,6 +77,10 @@ export class RiepilogoCostiCeComponent implements OnInit {
         pr = 64.22 * z.valoreCifra
       } else if(z.tipo_superficie == 4) {
         pr = 56 * z.valoreCifra
+      } else if(z.tipo_superficie == 5) {
+        pr = 64.22 * z.valoreCifra
+      } else if(z.tipo_superficie == 6) {
+        pr = 56 * z.valoreCifra
       }
       this.totale += pr
     })

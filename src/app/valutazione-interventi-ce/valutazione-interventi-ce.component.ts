@@ -23,6 +23,8 @@ export class ValutazioneInterventiCeComponent implements OnInit {
   caratteristiche: CaratteristicheQualitativeCe
   car: CaratteristicheQualitativeCe[]
   classeEnergetica: string
+  pass: boolean = false
+  pass2:boolean = false
 
   modCos: number
   effic: number
@@ -49,7 +51,18 @@ export class ValutazioneInterventiCeComponent implements OnInit {
     this.service.getCaratteristicheQualitative().subscribe(data => {
       this.car = data
     })
-    this.calcolaTotale()
+    this.passaggioTrue()
+  }
+
+  passaggioTrue() {
+    this.variabileIntervento.forEach(t => {
+      if(t.passaggio == 0) {
+        this.pass = true
+        this.calcolaTotale()
+      } else {
+        this.pass2 = true
+      }
+    })
   }
 
   calcolaTotale() {
@@ -121,10 +134,17 @@ export class ValutazioneInterventiCeComponent implements OnInit {
   premiBottone(selezionato: AssociazioneInterventoCe) {
     const nuovo = Object.assign({}, selezionato)
     this.arraySelezionati.push(nuovo)
-    this.mostraBottone = true
     this.massimoNumero()
+    this.mostraBottone = true
     this.risultatoSelezione.aggiungiIntervento(this.arraySelezionati[0])
-}
+  }
+
+  premiBottoneDue(selezionato: AssociazioneInterventoCe) {
+    const nuovo = Object.assign({}, selezionato)
+    this.arraySelezionati.push(nuovo)
+    this.mostraBottone = true
+    this.risultatoSelezione.aggiungiIntervento(this.arraySelezionati[0])
+  }
 
   trasferisciIntervento() {
     this.router.navigate(['/riepilogo-costi-ce'], {

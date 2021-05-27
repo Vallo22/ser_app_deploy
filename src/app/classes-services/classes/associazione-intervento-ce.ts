@@ -24,6 +24,7 @@ export class AssociazioneInterventoCe {
     varianti?: string[]
     variante: string
     tipo_superficie?: number = 0
+    passaggio: number
 
     maxVariante?: number
     minVariante?: number

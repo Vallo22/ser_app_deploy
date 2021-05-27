@@ -12,7 +12,7 @@ export class MatriceCeComponent implements OnInit {
 
   constructor(
     private router: Router
-  ) { }
+  ) { } 
 
   cr: number;
   mxp: number[] = [0, 0, 0, 0, 0, 0];
@@ -28,6 +28,8 @@ export class MatriceCeComponent implements OnInit {
   idCaratteristica: number = 0;
   showDiv: boolean = true
   classeEnergetica: string
+  showAlert: boolean = false
+  showMatrice: boolean = false
 
   scelta: boolean = true
   scelta2: boolean = true
@@ -102,6 +104,13 @@ export class MatriceCeComponent implements OnInit {
     this.idCaratteristica = window.history.state.idCaratteristica
     this.idStruttura = window.history.state.idStruttura
     this.classeEnergetica = window.history.state.classeEnergetica
+    this.variabileIntervento.forEach(t => {
+      if(t.passaggio == 1) {
+        this.showAlert = true
+      } else {
+        this.showMatrice = true
+      }
+    })
     for (let r = 0; r < 6; r++) {
       this.matriceNormalizzata.push([0, 0, 0, 0, 0, 0])
       this.matrix[r] = []
@@ -180,6 +189,20 @@ export class MatriceCeComponent implements OnInit {
     console.log("reversibilità: " + this.ponderazione[3]*100 + "%")
     console.log("sempl di cant: " + this.ponderazione[4]*100 + "%")
     console.log("eseg di ingomb: " + this.ponderazione[5]*100 + "%")
+    this.router.navigate(['/valutazione-interventi-ce'], {
+      state: {
+        caratteristiche: this.caratteristiche
+        , ponderazione: this.ponderazione
+        , variabileIntervento: this.variabileIntervento
+        , idStruttura: this.idStruttura
+        , idCaratteristica: this.idCaratteristica
+        , interventoSelezionato: this.interventoSelezionato
+        , classeEnergetica: this.classeEnergetica
+      }
+    })
+  }
+
+  proseguiSenzaMatrice() {
     this.router.navigate(['/valutazione-interventi-ce'], {
       state: {
         caratteristiche: this.caratteristiche
